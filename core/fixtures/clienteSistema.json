@@ -1,0 +1,136 @@
+[
+    {
+        "model": "core.cliente",
+        "pk": 1,
+        "fields": {
+            "nome": "Harris",
+            "ultimo_nome": "Xander",
+            "sexo": 1,
+            "endereco": "Rua 3",
+            "identidade": "00000000",
+            "cpf": "000.000.000-00",
+            "cep": "89900-000",
+            "datanascimento": "2013-03-16T17:41:28+00:00",
+            "estadoCivil": 1
+        }
+    },
+    {
+        "model": "core.cliente",
+        "pk": 3,
+        "fields": {
+            "nome": "Rosenberg",
+            "ultimo_nome": "Willow",
+            "sexo": 1
+        },
+        "endereco": "Rua 1",
+        "identidade": "00000000",
+        "cpf": "000.000.000-00",
+        "cep": "89900-000",
+        "datanascimento": "2013-03-16T17:41:28+00:00",
+        "estadoCivil": 1
+    },
+    {
+        "model": "core.cliente",
+        "pk": 16,
+        "fields": {
+            "nome": "Summers",
+            "ultimo_nome": "Buffy",
+            "sexo": 1,
+            "endereco": "Rua 2",
+            "identidade": "00000000",
+            "cpf": "000.000.000-00",
+            "cep": "89900-000",
+            "datanascimento": "2013-03-16T17:41:28+00:00",
+            "estadoCivil": 1
+            
+        }
+    },
+    {
+        "model": "core.sexo",
+        "pk": 1,
+        "fields": {
+            "descricao": "Masculino"
+        }
+    },
+    {
+        "model": "core.sexo",
+        "pk": 2,
+        "fields": {
+            "descricao": "Feminino"
+        }
+    },
+    {
+        "model": "core.estadoCivil",
+        "pk": 1,
+        "fields": {
+            "descricao": "Casado"
+        }
+    },
+    {
+        "model": "core.estadoCivil",
+        "pk": 2,
+        "fields": {
+            "descricao": "Solteiro"
+        }
+    },
+    {
+        "model": "core.produto",
+        "pk": 2,
+        "fields": {
+            "preco": "2200",
+            "descricao": "produto 1"
+        }
+    },
+    {
+        "model": "core.produto",
+        "pk": 3,
+        "fields": {
+            "preco": "2200",
+            "descricao": "produto 3"
+        }
+    },
+    {
+        "model": "core.produto",
+        "pk": 4,
+        "fields": {
+            "preco": "2200",
+            "descricao": "produto 2"
+        }
+    },
+    {
+        "model": "core.produtoComprado",
+        "pk": 1,
+        "fields": {
+            "produto": 2,
+            "preco": "2000",
+            "cliente": 1
+        }
+    },
+    {
+        "model": "core.produtoComprado",
+        "pk": 2,
+        "fields": {
+            "produto": 3,
+            "preco": "2200",
+            "cliente": 3
+        }
+    },
+    {
+        "model": "core.produtoComprado",
+        "pk": 3,
+        "fields": {
+            "produto": 4,
+            "preco": "2500",
+            "cliente": 16
+        }
+    },
+    {
+        "model": "core.produtoComprado",
+        "pk": 4,
+        "fields": {
+            "produto": 4,
+            "preco": "2600",
+            "cliente": 16
+        }
+    }
+]
