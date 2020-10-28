@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from core.views import getProdutoValor
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',admin.site.urls)
+    path('',admin.site.urls),
+    path('admin/getPreco', getProdutoValor)
 ]

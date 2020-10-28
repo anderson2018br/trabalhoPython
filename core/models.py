@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.files.uploadedfile import SimpleUploadedFile
-
+from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
 class Sexo(models.Model):
@@ -14,17 +14,16 @@ class EstadoCivil(models.Model):
     def __str__(self):
         return self.descricao
 
-
 class Cliente(models.Model):
     nome = models.CharField(max_length=30)
-    ultimo_nome = models.CharField(max_length=30)
+    ultimo_nome = models.CharField(max_length=30, verbose_name='Sobrenome')
     sexo = models.ForeignKey(Sexo, on_delete=models.CASCADE, blank=True,null=True)
-    endereco = models.CharField(max_length=30)
+    endereco = models.CharField(max_length=30, verbose_name='Endereço')
     identidade = models.CharField(max_length=30)
     cpf = models.CharField(max_length=30)
     cep = models.CharField(max_length=30)
-    datanascimento = models.DateTimeField(blank=True,null=True)
-    estadoCivil = models.ForeignKey(EstadoCivil, on_delete=models.CASCADE, blank=True,null=True)
+    datanascimento = models.DateTimeField(blank=True,null=True, verbose_name='Data de nascimento')
+    estadoCivil = models.ForeignKey(EstadoCivil, on_delete=models.CASCADE, blank=True,null=True, verbose_name='Estado civil')
 
     class Meta:
         verbose_name_plural = "Clientes"
@@ -34,8 +33,8 @@ class Cliente(models.Model):
         return f"{self.nome} {self.ultimo_nome}"
 
 class Produto(models.Model):
-    descricao = models.CharField(max_length=30)
-    preco = models.IntegerField()
+    descricao = models.CharField(max_length=30, verbose_name='Descrição')
+    preco = models.IntegerField(verbose_name='Preço')
     class Meta:
         verbose_name_plural = "Produtos"
     
@@ -45,7 +44,7 @@ class Produto(models.Model):
 class ProdutoComprado(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
-    preco = models.IntegerField()
+    preco = models.IntegerField(verbose_name='Preço')
     class Meta:
         verbose_name_plural = "Produtos comprados"
     

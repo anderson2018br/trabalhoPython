@@ -1,0 +1,26 @@
+{% extends 'admin/change_form.html' %}
+{%block breadcrumbs %}
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script>
+    $(document).ready(function() {
+        if (document.getElementById('produtocomprado_form')) {
+            $('#id_preco').attr('disabled', 'disabled');
+        }
+        $('#id_produto').on('change', function() {
+            let idValue = $(this).val();
+            $.ajax({
+                url: '/admin/getPreco',
+                type: 'GET',
+                data: 'idProduto='+idValue,
+                success: function(retorno) {
+                    $('#id_preco').val(retorno);
+                }
+            });
+        });
+        $('#produtocomprado_form').on('submit', function() {
+            $('#id_preco').attr('disabled', false);
+        })
+    });
+ </script>
+ 
+{%endblock%}

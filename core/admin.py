@@ -6,6 +6,7 @@ from core.models import Cliente, Sexo, EstadoCivil, ProdutoComprado, Produto
 from django.urls import reverse
 from django.utils.http import urlencode
 from django.utils.html import format_html
+from django.db.models.aggregates import Sum
 @admin.register(Sexo)
 class SexoAdmin(admin.ModelAdmin):
     list_display = ("descricao",)
@@ -30,15 +31,15 @@ class EstadoCivilAdmin(admin.ModelAdmin):
 
 @admin.register(Cliente)
 class ClienteAdmin(admin.ModelAdmin):
-    list_display = ("nome", "ultimo_nome", 'cpf', "media_valor", "produtos_comprados")
+    list_display = ("nome", "ultimo_nome", 'cpf', "soma_valor", "produtos_comprados")
     list_filter = ("nome", "ultimo_nome", 'cpf', 'datanascimento')
     search_fields = ("nome",'ultimo_nome')
-    def media_valor(self, obj):
+    def soma_valor(self, obj):
         from django.db.models import Avg
-        result = ProdutoComprado.objects.filter(cliente=obj).aggregate(Avg("preco"))
-        return "R$ 0,00" if result['preco__avg'] == None else "R$ "+str(result['preco__avg'])
+        result = ProdutoComprado.objects.filter(cliente=obj).aggregate(Sum("preco"))
+        return "R$ 0,00" if result['preco__sum'] == None else "R$ "+str(result['preco__sum'])
     
-    media_valor.short_description = "média do valor gasto"
+    soma_valor.short_description = "Valor gasto"
 
     def produtos_comprados(self, obj):
         count = ProdutoComprado.objects.filter(cliente=obj).count()
@@ -52,11 +53,21 @@ class ClienteAdmin(admin.ModelAdmin):
     produtos_comprados.short_description = "Produtos comprados"
     pass
 
+    change_list_template = 'admin/core/extras/clienteAdmin.change_list_template.html'
+
+    def changelist_view(self, request, extra_context=None):
+        my_context = {
+            'total': ProdutoComprado.objects.all().aggregate(tot=Sum('preco'))['tot'],
+        }
+        return super(ClienteAdmin, self).changelist_view(request,
+            extra_context=my_context)
+
 
 @admin.register(ProdutoComprado)
 class ProdutoCompradoAdmin(admin.ModelAdmin):
-    list_display = ("produto", "preco")
-    list_filter = ("produto", "preco")
+    list_display = ("produto", "preco", "cliente")
+    list_filter = ("produto", "preco", "cliente")
+    search_fields = ("produto",'preco', 'cliente')
 
     pass
 
@@ -65,4 +76,5 @@ class ProdutoCompradoAdmin(admin.ModelAdmin):
 class ProdutoAdmin(admin.ModelAdmin):
     list_display = ("descricao", "preco")
     list_filter = ("descricao", "preco")
+    search_fields = ("descricao",'preco')
     pass

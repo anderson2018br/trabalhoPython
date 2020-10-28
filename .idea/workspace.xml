@@ -19,13 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8575f78f-4317-4098-817e-cbffa8ff5f4a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/ClienteSistema.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClienteSistema/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClienteSistema/urls.py" afterDir="false" />
-    </list>
+    <list default="true" id="8575f78f-4317-4098-817e-cbffa8ff5f4a" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,7 +55,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1603884805518</updated>
-      <workItem from="1603884807759" duration="58000" />
+      <workItem from="1603884807759" duration="190000" />
     </task>
     <servers />
   </component>
